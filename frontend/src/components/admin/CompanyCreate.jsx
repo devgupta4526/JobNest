@@ -14,14 +14,16 @@ const CompanyCreate = () => {
     const navigate = useNavigate();
     const [companyName, setCompanyName] = useState();
     const dispatch = useDispatch();
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-    
-    // Usage
-    const token = getCookie('token');
+    // Function to get cookie by name
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+// Usage
+const token = getCookie('token');
+console.log("Token from cookie:", token); // Log the token to debug
     const registerNewCompany = async () => {
         try {
             const res = await axios.post(`${COMPANY_API_END_POINT}/register`, {companyName}, {
